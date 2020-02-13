@@ -1,5 +1,3 @@
-const expenses = JSON.parse(localStorage.getItem("expenses")) || [];
-
 let formsInfo = document.getElementById("forms");
 formsInfo.addEventListener("submit", function(event) {
   event.preventDefault();
@@ -9,7 +7,10 @@ formsInfo.addEventListener("submit", function(event) {
   let name = document.getElementById("user-name").value;
   let date = document.getElementById("user-date").value;
 
+  const expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+
   const expense = {
+      
     type,
     amount,
     name,
@@ -25,16 +26,18 @@ formsInfo.addEventListener("submit", function(event) {
   localStorage.setItem("expenses", JSON.stringify(expenses));
 });
 
-function renderExpense() {
+function renderExpense(expense) {
   //shows expense
   const expenseList = document.getElementById("expense-list");
-
+  const expenses = JSON.parse(localStorage.getItem("expenses")) || [];
   for (let i = 0; i < expenses.length; i++) {
-    expenseList.appendChild(createNewItem(expenses[i]));
+    let expenseInput = document.createTextNode(createNewItem(expenses[i]));
+    expenseList.appendChild(expenseInput);
+
   }
 }
 
-function createNewItem(expense) {
+function createNewItem(expenseItem) {
   const itemRow = document.createElement("tr");
 
   const newType = document.createElement("td");
@@ -52,4 +55,14 @@ function createNewItem(expense) {
   const newDate = document.createElement("td");
   newDate.textContent = expense.date;
   itemRow.appendChild(newDate);
+
+
+}
+
+function deleteExpense(id) {
+    for (let i = 0; i < expenses.length; i++) {
+        if (expenses[i].id == id) {
+            expenses.splice(i,1);
+        }
+    }
 }

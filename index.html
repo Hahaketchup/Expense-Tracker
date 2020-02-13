@@ -1,51 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-</head>
-<body>
-    <div id = "forms">
-        <form>
-            <div>
-                <span>Type:</span>
-                    <select id="user-type" name="type" required>
-                        <option value="card">Card</option>
-                        <option value="cash">Cash</option>
-                        <option value="other">Other</option>
-                    </select>
-            </div>
-            <div>
-                <span>Amount:</span>
-                    <input id="user-amount" type="number" name="item-amount" placeholder="How much?" required>
-            </div>
-            <div>
-                <span>Name:</span>
-                    <input id="user-name" type="text" name="item-name" placeholder="What did you buy?" required>
-            </div>
-            <div>
-                <span>Date:</span>
-                    <input id="user-date" type="date" name="item-date" required>
-            </div>
-            <button type="submit">Add Expense</button>
-        </form>
+  </head>
+  <body>
+    <div id="forms">
+      <form>
+        <div>
+          <span>Type:</span>
+          <select id="user-type" name="type" required>
+            <option value="card">Card</option>
+            <option value="cash">Cash</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div>
+          <span>Amount:</span>
+          <input
+            id="user-amount"
+            type="number"
+            name="item-amount"
+            placeholder="How much?"
+            required
+          />
+        </div>
+        <div>
+          <span>Name:</span>
+          <input
+            id="user-name"
+            type="text"
+            name="item-name"
+            placeholder="What did you buy?"
+            required
+          />
+        </div>
+        <div>
+          <span>Date:</span>
+          <input id="user-date" type="date" name="item-date" required />
+        </div>
+        <button type="submit">Add Expense</button>
+      </form>
     </div>
 
     <table>
+      <tr>
+        <th id="type">Type</th>
+        <th id="name">Name</th>
+        <th id="date">Date</th>
+        <th id="amount">Amount</th>
+        <th id="options">Options</th>
+      </tr>
+      <tbody id="expense-list">
         <tr>
-            <th id="type">Type</th>
-            <th id="name">Name</th>
-            <th id="date">Date</th>
-            <th id="amount">Amount</th>
-            <th id="options">Options</th>
+          <td id="default-table" colspan="5">No expenses</td>
         </tr>
-        <tbody id="expense-list"></tbody>
-        <tr>
-            <td id="default-table" colspan="5">No expenses</td>
-        </tr>
+      </tbody>
     </table>
     <script src="Expense Tracker.js"></script>
-</body>
+  </body>
 </html>
