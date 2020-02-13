@@ -37,7 +37,7 @@ function renderExpense(expense) {
   }
 }
 
-function createNewItem(expenseItem) {
+function createNewItem(expense) {
   const itemRow = document.createElement("tr");
 
   const newType = document.createElement("td");
