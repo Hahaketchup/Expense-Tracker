@@ -7,23 +7,22 @@ formsInfo.addEventListener("submit", function(event) {
   let name = document.getElementById("user-name").value;
   let date = document.getElementById("user-date").value;
 
-  if (name.length > 0) {
-    let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+  const expenses = JSON.parse(localStorage.getItem("expenses")) || [];
 
-    const expense = {
-      type,
-      amount,
-      name,
-      date,
-      id: expenses.length > 0 ? expenses[expenses.length - 1].id + 1 : 1
-    };
+  const expense = {
+    type,
+    amount,
+    name,
+    date,
+    id: expenses.length > 0 ? expenses[expenses.length - 1].id + 1 : 1
+  };
 
-    document.getElementById("forms").value = "";
-
-    expenses.push(expense);
-    localStorage.setItem("expenses", JSON.stringify(expenses));
-  }
   renderExpense();
+
+  document.getElementById("forms").value = "";
+
+  expenses.push(expense);
+  localStorage.setItem("expenses", JSON.stringify(expenses));
 });
 
 function renderExpense() {
@@ -31,53 +30,41 @@ function renderExpense() {
   const expenseList = document.getElementById("expense-list");
 
   for (let i = 0; i < expenses.length; i++) {
-    let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
     //create tr
     const itemRow = document.createElement("tr");
-    //assign tr class name
-    itemRow.className = "table-row";
-    //set id
-    itemRow.setAttribute("data-id", expenses[i].id);
     //create td for type
     const newType = document.createElement("td");
     //create text node
-    newType.appendChild(document.createTextNode(expenses[i].type));
+    newType.textContent = expenses[i].type;
     //append td to tr
     itemRow.appendChild(newType);
-
     //create td for name
     const newName = document.createElement("td");
     //create text node
-    newName.appendChild(document.createTextNode(expenses[i].name));
+    newName.textContent = expenses[i].name;
     //append td to tr
     itemRow.appendChild(newName);
-
     //create td for date
     const newDate = document.createElement("td");
     //create text node
-    newDate.appendChild(document.createTextNode(expenses[i].date));
+    newDate.textContent = expenses[i].date;
     //append td to tr
     itemRow.appendChild(newDate);
-
     //create td for amount
     const newAmount = document.createElement("td");
     //create text node
-    newAmount.appendChild(document.createTextNode("$" + expenses[i].amount));
+    newAmount.textContent ="$" + expenses[i].amount;
     //append td to tr
     itemRow.appendChild(newAmount);
-
-    //append tr to tbody
-    expenseList.appendChild(itemRow);
-
+    //set id
+    itemRow.setAttribute('data-id', expenses[i].id);
     //create delete button
     let deleteBtn = createDeleteButton();
     //append delete button to tr
     itemRow.appendChild(deleteBtn);
 
-    let tableList = document.getElementById("expense-list");
-    tableList.appendChild(itemRow);
-
-    return itemRow;
+    //append tr to tbody
+    expenseList.appendChild(itemRow);
   }
 }
 
@@ -109,6 +96,6 @@ function deleteExpense(event) {
 
 let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
 for (let i = 0; i < expenses.length; i++) {
-  renderExpense();
+  renderExpense(expenses[i]);
   localStorage.setItem("expenses", JSON.stringify(expenses));
-}
+};
