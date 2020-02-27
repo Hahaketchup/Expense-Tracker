@@ -4,17 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="Expense Tracker.css">
   </head>
   <body>
+      <h1>Your Personal Expense Tracker</h1>
     <div id="forms">
       <form>
         <div>
           <span>Type:</span>
           <select id="user-type" name="type" required>
-            <option value="card">Card</option>
-            <option value="cash">Cash</option>
-            <option value="other">Other</option>
+            <option value="Card">Card</option>
+            <option value="Cash">Cash</option>
+            <option value="Other">Other</option>
           </select>
         </div>
         <div>
@@ -41,11 +43,12 @@
           <span>Date:</span>
           <input id="user-date" type="date" name="item-date" required />
         </div>
-        <button type="submit">Add Expense</button>
+        <button id="button" type="submit">Add Expense</button>
       </form>
     </div>
 
-    <table>
+    <section class="table-section">
+    <table class="table">
       <tr>
         <th id="type">Type</th>
         <th id="name">Name</th>
@@ -56,6 +59,7 @@
       <tbody id="expense-list">
       </tbody>
     </table>
+</section>
     <script src="Expense Tracker.js"></script>
   </body>
 </html>

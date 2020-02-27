@@ -17,55 +17,62 @@ formsInfo.addEventListener("submit", function(event) {
     id: expenses.length > 0 ? expenses[expenses.length - 1].id + 1 : 1
   };
 
-  renderExpense();
-
   document.getElementById("forms").value = "";
 
   expenses.push(expense);
   localStorage.setItem("expenses", JSON.stringify(expenses));
+
+  renderExpense(expense);
 });
 
-function renderExpense() {
-  //shows expense
-  const expenseList = document.getElementById("expense-list");
+function renderExpense(expense) {
+    let expenseRow = createRow(expense);
 
-  for (let i = 0; i < expenses.length; i++) {
+    let deleteBtn = createDeleteButton();
+    expenseRow.appendChild(deleteBtn);
+
+  const expenseList = document.getElementById("expense-list");
+    expenseList.appendChild(expenseRow);
+
+  console.log(expenseList);
+}
+
+function createRow(expense) {
     //create tr
     const itemRow = document.createElement("tr");
+
     //create td for type
     const newType = document.createElement("td");
     //create text node
-    newType.textContent = expenses[i].type;
+    newType.appendChild(document.createTextNode(expense.type));
     //append td to tr
     itemRow.appendChild(newType);
+
     //create td for name
     const newName = document.createElement("td");
     //create text node
-    newName.textContent = expenses[i].name;
+    newName.appendChild(document.createTextNode(expense.name));
     //append td to tr
     itemRow.appendChild(newName);
+
     //create td for date
     const newDate = document.createElement("td");
     //create text node
-    newDate.textContent = expenses[i].date;
+    newDate.appendChild(document.createTextNode(expense.date));
     //append td to tr
     itemRow.appendChild(newDate);
+
     //create td for amount
     const newAmount = document.createElement("td");
     //create text node
-    newAmount.textContent ="$" + expenses[i].amount;
+    newAmount.appendChild(document.createTextNode("$" + expense.amount));
     //append td to tr
     itemRow.appendChild(newAmount);
+    
     //set id
-    itemRow.setAttribute('data-id', expenses[i].id);
-    //create delete button
-    let deleteBtn = createDeleteButton();
-    //append delete button to tr
-    itemRow.appendChild(deleteBtn);
+    itemRow.setAttribute('data-id', expense.id);
+    return itemRow;
 
-    //append tr to tbody
-    expenseList.appendChild(itemRow);
-  }
 }
 
 function createDeleteButton() {
